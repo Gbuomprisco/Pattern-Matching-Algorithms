@@ -1,4 +1,23 @@
 /*
+ **  Naive Search
+ */
+
+function NaiveSearch(x, y, n, m) {
+    var i = 0;
+    while (i <= n - m) {
+        var j = 0;
+        while ((j < m) && (y[j] == x[i + j])) {
+            j++;
+        }
+        if (j == m) {
+            console.log('y occurs in x at the position ' + i);
+        }
+        i++;
+    }
+}
+
+
+/*
  ** Compute borders of a string
  */
 
