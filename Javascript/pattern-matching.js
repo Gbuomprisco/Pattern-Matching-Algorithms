@@ -16,6 +16,45 @@ function NaiveSearch(x, y, n, m) {
     }
 }
 
+function Hash(x, m) {
+    var i = 0,
+        j;
+    var h = '';
+    var base = 2;
+    var q = 10;
+    for (; i < m; i++) {
+        j = (x.charCodeAt(i) * Math.pow(base, m - i)) % q;
+        h += j.toString();
+    }
+    return h;
+}
+
+function KarpRabin(x, y, n, m) {
+    var i = 0,
+        pos = 0,
+        hx, hy;
+    for (; i < m; i++) {
+        hx = Hash(x, y.length);
+        hy = Hash(y, y.length);
+    }
+    while (pos < n - m) {
+        if (hx == hy) {
+            var j = 0;
+            while (j < m && x[j] == y[pos + j]) {
+                j++;
+            }
+            if (i == m) {
+                console.log('x occurs in y at the position ' + pos);
+            }
+        }
+        if (pos < n - m) {
+            var substr = x.substr(pos, m);
+            hx = Hash(substr, substr.length);
+        }
+        pos++;
+    }
+}
+
 
 /*
  ** Compute borders of a string
@@ -113,4 +152,39 @@ function Search(x, y, m, n, algorithm) {
             console.log("x occurs in y at the position " + (j - 1));
         }
     }
+}
+
+/*
+ ** Table of prefixes
+ */
+
+function min(x, y) {
+    var _min = x < y ? x : y;
+    return _min;
+}
+
+function max(x, y) {
+    var _max = x > y ? x : y;
+    return _max;
+}
+
+function prefixes(x, m) {
+    var pref = [m];
+    var g = 0,
+        f = 0,
+        i = 1;
+    while (i < m) {
+        if (i < g && pref[i - f] !== g - i) {
+            pref.push(min(pref[i - f], g - i));
+        } else {
+            g = max(g, i);
+            f = i;
+            while (g < m && x[g] == x[g - f]) {
+                g++;
+            }
+            pref.push(g - f);
+        }
+        i++;
+    }
+    return pref;
 }
