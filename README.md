@@ -7,7 +7,11 @@ Pattern Matching Algorithms written by using different scripting languages
 
 1. Borders of a string
 2. Morris-Pratt
-3. Knut-Morris-Pratt
+3. Knuth-Morris-Pratt
+4. Karp Rabin
+5. Hashing
+6. Naive Linear Search
+7. Prefixes of a string
 4. ... [TODO]
 
 ## Languages
