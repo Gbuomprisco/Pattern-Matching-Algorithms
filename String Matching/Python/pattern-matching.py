@@ -101,3 +101,28 @@ def prefixes(x, m):
             pref.append(g - f)
         i = i + 1
     return pref
+
+# hash
+
+def hash(x, m, base, q):
+    i = 0
+    w = 1
+    while i < m:
+        w += (ord(x[i]) * (base ** m - i))
+        i = i + 1
+    return w % q
+
+def karp_rabin(x, y, m, n, base, q):
+    hx = hash(x, n, base, q)
+    hy = hash(y, n, base, q)
+    i = 0
+    while i <= m - n:
+        if hx == hy:
+            j = 0
+            while j < n and y[j] == x[j + i - 1]:
+                j = j + 1
+            if j == n:
+                print 'y occurs in x at the position %d' % (i)
+        w = x[i: i + n]
+        hx = hash(w, len(w), base, q)
+        i = i + 1

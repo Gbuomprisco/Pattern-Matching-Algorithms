@@ -16,42 +16,35 @@ function NaiveSearch(x, y, n, m) {
     }
 }
 
-function Hash(x, m) {
+function Hash(x, m, base, q) {
     var i = 0,
-        j;
-    var h = '';
-    var base = 2;
-    var q = 10;
+        j = 1;
     for (; i < m; i++) {
-        j = (x.charCodeAt(i) * Math.pow(base, m - i)) % q;
-        h += j.toString();
+        j += (x.charCodeAt(i) * Math.pow(base, m - i));
     }
-    return h;
+    return j % q;
 }
 
-function KarpRabin(x, y, n, m) {
+function KarpRabin(x, y, m, n, d, q) {
     var i = 0,
-        pos = 0,
-        hx, hy;
-    for (; i < m; i++) {
-        hx = Hash(x, y.length);
-        hy = Hash(y, y.length);
-    }
-    while (pos < n - m) {
+        hx, hy, j, substr;
+
+    hx = Hash(x, n, d, q);
+    hy = Hash(y, n, d, q);
+
+    while (i <= m - n) {
         if (hx == hy) {
-            var j = 0;
-            while (j < m && x[j] == y[pos + j]) {
+            j = 0;
+            while (j < n && y[j] == x[i + j]) {
                 j++;
             }
-            if (i == m) {
-                console.log('x occurs in y at the position ' + pos);
+            if (j == n) {
+                console.log('y occurs in x at the position ' + i);
             }
         }
-        if (pos < n - m) {
-            var substr = x.substr(pos, m);
-            hx = Hash(substr, substr.length);
-        }
-        pos++;
+        substr = x.substr(i + 1, n);
+        hx = Hash(substr, substr.length, d, q);
+        i++;
     }
 }
 
