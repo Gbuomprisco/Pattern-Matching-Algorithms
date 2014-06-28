@@ -1,9 +1,9 @@
 Pattern-Matching-Algorithms
 ===========================
 
-Pattern Matching Algorithms written by using different scripting languages
+Pattern Matching Algorithms written by using different scripting languages.
 
-##Algorithms
+## Algorithms
 
 1. Borders of a string
 2. Morris-Pratt
@@ -18,8 +18,8 @@ Pattern Matching Algorithms written by using different scripting languages
 
 1. Python
 2. Javascript
-3. Ruby [TODO]
-4. Java [TODO]
+3. Scala
+4. Ruby [TODO] (?)
 
 
 ## Reference

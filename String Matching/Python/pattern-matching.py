@@ -42,6 +42,7 @@ def mp_borders(x, m):
     return mpNext
 
 
+
 # Preprocessing Knuth-Morris-Pratt Algorithm
 
 def kmp_borders(x, m):
@@ -57,8 +58,12 @@ def kmp_borders(x, m):
             kmpNext.append(kmpNext[j])
         else:
             kmpNext.append(j)
+    kmpNext.append(j)
     return kmpNext
 
+
+#print mp_borders(x, len(x))
+#print kmp_borders(x, len(x))
 
 # KMP and MP Algorithms Search function
 
@@ -66,9 +71,9 @@ def search(x, y, m, n, algorithm):
 
     print "Preprocessing phase:"
     if algorithm == 'kmp':
-        MP_next = kmp_borders(x, m)
+        MP_next = kmp_borders(y, n)
     elif algorithm == 'mp':
-        MP_next = mp_borders(x, m)
+        MP_next = mp_borders(y, n)
     print MP_next
 
     print "\nSearching phase:"
@@ -78,10 +83,14 @@ def search(x, y, m, n, algorithm):
         while (i == n) or (i >= 0 and x[j] != y[i]):
             i = MP_next[i]
         i = i + 1
+        print i
         j = j + 1
         if i == n:
             print "x occurs in y at the position %d" % (j - 1)
 
+y = 'aba'
+x = 'abcacacabac'
+search(x, y, len(x), len(y), 'mp')
 
 # Table of prefixes
 
@@ -126,3 +135,33 @@ def karp_rabin(x, y, m, n, base, q):
         w = x[i: i + n]
         hx = hash(w, len(w), base, q)
         i = i + 1
+
+
+def bad_character(x, m):
+    bc = []
+    bc_seen = []
+    i = m - 1
+    while i >= 0:
+        if not x[i] in bc_seen and i < m - 1:
+            bc_seen.append(x[i])
+            bc.append(i)
+        i = i - 1
+    return bc
+
+def good_suffix(x, m):
+    gs = []
+    i = 0
+    d = 0
+    j = m - 2
+    while j >= 0:
+        while j == -1 or suff[i + 1] == i + 1
+            if j <= m - i - 1:
+                gs.append(m - i - 1)
+                j = j - 1
+        i = i + 1
+    while d <= m - 2:
+        gs[suff[d]] = m - d - 1
+    return gs
+
+
+print bad_character(x, len(x))

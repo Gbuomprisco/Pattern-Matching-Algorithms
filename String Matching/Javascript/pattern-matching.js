@@ -102,7 +102,7 @@ function KMP_Next(x, m) {
     var kmpNext = [j];
     while (i < m - 1) {
         while (j >= 0 && x[i] !== x[j]) {
-            j = mpNext[j];
+            j = kmpNext[j];
         }
         j++;
         i++;
@@ -111,8 +111,8 @@ function KMP_Next(x, m) {
         } else {
             kmpNext.push(j);
         }
-        return kmpNext;
     }
+    return kmpNext;
 }
 
 /*
@@ -146,6 +146,11 @@ function Search(x, y, m, n, algorithm) {
         }
     }
 }
+
+var x = "sddjrejmdifsdfdsfdsfdsfdfgdihjeojrejmdipsjdusabduybyeuwfbdsbfjsadnsndfidsfbisjrejmdid";
+var y = "jrejmdi";
+Search(x, y, x.length, y.length, 'mp');
+
 
 /*
  ** Table of prefixes
