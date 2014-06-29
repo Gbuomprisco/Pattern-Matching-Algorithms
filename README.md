@@ -19,7 +19,8 @@ Pattern Matching Algorithms written by using different scripting languages.
 1. Python
 2. Javascript
 3. Scala
-4. Ruby [TODO] (?)
+4. Ruby
+5. ... [TODO]
 
 
 ## Reference
